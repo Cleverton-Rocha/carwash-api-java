@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  postgres:
+    container_name: carwash-postgres
+    image: postgres:latest
+    hostname: db-carwash
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: carwash
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: '0.6'
+          memory: '180MB'
